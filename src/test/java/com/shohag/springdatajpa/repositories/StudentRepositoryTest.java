@@ -105,4 +105,10 @@ class StudentRepositoryTest {
         Student student = studentRepository.getStudentByEmailIdUsingNativeQuery("sohag@gmail.com");
         System.out.println(student);
     }
+
+    @Test
+    public void findStudentByEmailAddressUsingNativeQueryNamedParams() {
+        Student student = studentRepository.getStudentByEmailIdUsingNativeQueryNamedParams("sohag@gmail.com");
+        System.out.println(student);
+    }
 }

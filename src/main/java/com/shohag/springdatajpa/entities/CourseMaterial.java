@@ -27,7 +27,8 @@ public class CourseMaterial {
 
     @OneToOne(
             cascade = CascadeType.ALL, // while creating courseMaterial without saving course earlier is failed, because there is no course in course table so referencing created problem, so here CASCADING comes into picture
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            optional = false // it means, whenever we want to save a course, then it should have the course material details (means course material is required, so optional set to be false), by default optional is true
     )
     @JoinColumn(
             name = "course_id", // this will be the column name inside course_material table for mapping course table

@@ -87,4 +87,16 @@ class StudentRepositoryTest {
         Student student = studentRepository.findByFirstNameAndLastName("Sho", "1");
         System.out.println(student);
     }
+
+    @Test
+    public void findStudentByEmailIdByJPQLQuery() {
+        Student student = studentRepository.getStudentByEmailId("sohag@gmail.com");
+        System.out.println(student);
+    }
+
+    @Test
+    public void findStudentFirstNameByEmailIdByJPQLQuery() {
+        String studentFirstName = studentRepository.getStudentFirstNameByEmailId("sohag@gmail.com");
+        System.out.println(studentFirstName);
+    }
 }

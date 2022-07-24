@@ -1,5 +1,6 @@
 package com.shohag.springdatajpa.repositories;
 
+import com.shohag.springdatajpa.entities.Guardian;
 import com.shohag.springdatajpa.entities.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,27 @@ class StudentRepositoryTest {
                 .emailId("sohag@gmail.com")
                 .firstName("Sho")
                 .lastName("hag")
-                .guardianName("ABC")
-                .guardianEmail("abc@gmail.com")
-                .guardianMobile("01955778899")
+                //.guardianName("ABC")
+                //.guardianEmail("abc@gmail.com")
+                //.guardianMobile("01955778899")
+                .build();
+
+        studentRepository.save(student);
+    }
+
+    @Test
+    public void saveStudentWithGuardian() {
+        Guardian guardian = Guardian.builder()
+                .name("DEF")
+                .email("def@gmail.com")
+                .mobile("01855667788")
+                .build();
+
+        Student student = Student.builder()
+                .emailId("frustrated@gmail.com")
+                .firstName("Frus")
+                .lastName("trated")
+                .guardian(guardian)
                 .build();
 
         studentRepository.save(student);

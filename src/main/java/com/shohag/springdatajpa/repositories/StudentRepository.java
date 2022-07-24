@@ -2,10 +2,12 @@ package com.shohag.springdatajpa.repositories;
 
 import com.shohag.springdatajpa.entities.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -46,4 +48,14 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             nativeQuery = true
     )
     Student getStudentByEmailIdUsingNativeQueryNamedParams(@Param("email") String emailId);
+
+
+    // Check some update operations
+    @Modifying // https://www.baeldung.com/spring-data-jpa-modifying-annotation
+    @Transactional // important doc : https://stackoverflow.com/questions/1099025/spring-transactional-what-happens-in-background
+    @Query(
+            value = "UPDATE tbl_student s SET s.first_name = ?1 WHERE s.email_address = ?2", // this query will also work : UPDATE tbl_student SET first_name = ?1 WHERE email_address = ?2
+            nativeQuery = true
+    )
+    void updateStudentNameByEmailId(String firstName, String emailId);
 }

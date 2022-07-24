@@ -26,5 +26,7 @@ class CourseMaterialRepositoryTest {
                 .build();
 
         courseMaterialRepository.save(courseMaterial);
+
+        // while creating courseMaterial without saving course earlier is failed, because there is no course in course table so referencing created problem, so here CASCADING comes into picture
     }
 }

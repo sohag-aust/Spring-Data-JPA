@@ -27,7 +27,9 @@ public class CourseMaterial {
     private Long courseMaterialId;
     private String url;
 
-    @OneToOne
+    @OneToOne(
+            cascade = CascadeType.ALL // while creating courseMaterial without saving course earlier is failed, because there is no course in course table so referencing created problem, so here CASCADING comes into picture
+    )
     @JoinColumn(
             name = "course_id", // this will be the column name inside course_material table for mapping course table
             referencedColumnName = "courseId" // it is the primary key inside course entity which is mapped with course_material entity

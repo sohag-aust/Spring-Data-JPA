@@ -28,5 +28,8 @@ public class Course {
     private String title;
     private Integer credit;
 
-
+    @OneToOne( // setting bi-directional mapping between course and course-material using @OneToOne annotation
+            mappedBy = "course"
+    )
+    private CourseMaterial courseMaterial;
 }

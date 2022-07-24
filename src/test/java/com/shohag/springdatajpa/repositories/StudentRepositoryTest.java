@@ -1,0 +1,41 @@
+package com.shohag.springdatajpa.repositories;
+
+import com.shohag.springdatajpa.entities.Student;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+
+@SpringBootTest
+//@DataJpaTest
+class StudentRepositoryTest {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    // constructor injection throws error, why ? (should investigate)
+//    public StudentRepositoryTest(StudentRepository studentRepository) {
+//        this.studentRepository = studentRepository;
+//    }
+
+    @Test
+    public void saveStudent() {
+        Student student = Student.builder()
+                .emailId("sohag@gmail.com")
+                .firstName("Sho")
+                .lastName("hag")
+                .guardianName("ABC")
+                .guardianEmail("abc@gmail.com")
+                .guardianMobile("01955778899")
+                .build();
+
+        studentRepository.save(student);
+    }
+
+    @Test
+    public void getStudents() {
+        List<Student> students = studentRepository.findAll();
+        System.out.println(students);
+    }
+}
